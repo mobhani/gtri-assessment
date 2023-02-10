@@ -21,7 +21,6 @@ int main ()
 
     cout << min_sum(arr) << endl;
 
-
     return 0;
 }
 
@@ -34,23 +33,25 @@ int min_sum(vector<int> vect)
 {
     if ( vect.size() > 2 )
     {
+        // initializes variables as max value of int as supported by C++
         int min_1 = INT_MAX, min_2 = INT_MAX;
 
         for ( int i = 0; i < vect.size(); i++ )
         {
-            if ( vect[i] < min_2 && vect[i] > 0 )
+            // if current element is smaller than our smallest stored variable
+            if ( vect[i] < min_1 && vect[i] > 0 )
             {
-                min_1 = min_2;
-                min_2 = vect[i];
+                min_2 = min_1;      // ovewrwrites second smallest with stored smallest
+                min_1 = vect[i];    // stores new smallest 
             }
-
-            else if ( vect[i] < min_1 && vect[i] != min_2 && vect[i] > 0 )
-                min_1 = vect[i];
+            // if current element is smaller than stored second smallest but larger than stored smallest
+            else if ( vect[i] < min_2 && vect[i] != min_1 && vect[i] > 0 )
+                min_2 = vect[i];    // stores new second smallest
 
         }
 
         return min_1 + min_2;
     }
     
-    return -1;
+    return -1;  // error code
 }
