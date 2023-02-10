@@ -1,5 +1,6 @@
 # gtri-assessment
 
-compiled using latest gcc on Arch
+compiled and run using latest gcc on Arch
 
-$ gcc main.cpp -lstdc++
+$ gcc -o exec main.cpp -lstdc++
+$ ./exec.out
