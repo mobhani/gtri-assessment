@@ -18,18 +18,28 @@ int main ( int argc, char *argv[] )
 {
     double* arr = new double[argc];
 
-    // Takes CLI args and inserts into arror
+    // takes CLI args and inserts into array
     for ( int i = 1; i < argc; ++i )
         arr[i] = atof(argv[i]) ;
 
+    // performs calculation
+    int return_output = min_sum( argc, arr );
+    // if array too small or doesn't contain two positive numbers
+    if ( return_output == -1 )
+    {
+        cout << "Input error." << endl;
+        delete[] arr;
+        return -1;
+    }
+        
     cout << "Sum of the two lowest positive numbers from the array [";
     for ( int i = 1; i < argc; i++ )
         i == argc - 1 ? cout << arr[i] << ']': cout << arr[i] << ',';
 
-    cout << " is " << min_sum(argc, arr) << endl;
+    cout << " is " << return_output << endl;
 
     delete[] arr;
-    
+
     return 0;
 }
 
@@ -59,7 +69,9 @@ int min_sum( int size, double *arr )
                 min_2 = arr[i];    // stores new second smallest
 
         }
-
+        // returns -1 if there is only one positive integer in array
+        if ( min_1 == INT_MAX || min_2 == INT_MAX )
+            return -1;
         return min_1 + min_2;
     }
     
