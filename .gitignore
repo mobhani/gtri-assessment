@@ -2,3 +2,5 @@
 *.out
 # ignore executable
 exec
+# ignore output files
+*output.txt

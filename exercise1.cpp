@@ -7,19 +7,18 @@ GTRI Assessment
 #include <vector>
 #include <climits>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
 // prototypes
-int min_sum(vector<int> vect);
+int min_sum( vector<int> vect );
 
 
 int main ()
 {
     
-    vector<int> arr = {1};
-
-    cout << min_sum(arr) << endl;
+    
 
     return 0;
 }
@@ -29,7 +28,7 @@ int main ()
     Takes an array of integers as input.
     Returns sum of two smallest positive integers.
 */
-int min_sum(vector<int> vect)
+int min_sum( vector<int> vect )
 {
     if ( vect.size() > 2 )
     {
