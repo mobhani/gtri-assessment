@@ -17,7 +17,7 @@ int min_sum(vector<int> vect);
 int main ()
 {
     
-    vector<int> arr = {1,2,3,4};
+    vector<int> arr = {1};
 
     cout << min_sum(arr) << endl;
 
@@ -44,7 +44,7 @@ int min_sum(vector<int> vect)
                 min_2 = vect[i];
             }
 
-            else if (vect[i] < min_1 && vect[i] != min_2 && vect[i] > 0)
+            else if ( vect[i] < min_1 && vect[i] != min_2 && vect[i] > 0 )
                 min_1 = vect[i];
 
         }

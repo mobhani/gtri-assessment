@@ -1,2 +1,4 @@
 # ignore ALL .out files
 *.out
+# ignore executable
+exec
