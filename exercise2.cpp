@@ -4,7 +4,6 @@ Zain Mobhani
 GTRI Assessment
 */
 
-#include <climits>
 #include <iostream>
 #include <string>
 
@@ -54,8 +53,6 @@ int main ( int argc, char *argv[] )
         
         return 0;
     }
-
-    
 
     cout << "Input error." << endl;
     return -1;
