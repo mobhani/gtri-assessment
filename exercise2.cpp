@@ -4,63 +4,128 @@ Zain Mobhani
 GTRI Assessment
 */
 
-#include <vector>
 #include <climits>
 #include <iostream>
 #include <string>
-#include "LinkedList.h"
+
+// prototypes
+bool checkDuplicate ( struct Node** head, int elem );
+void insertNode ( struct Node** head, int node_data );
+void printList ( struct Node** head );
+void deleteList ( struct Node** head );
 
 using namespace std;
 
-// prototypes
-int min_sum( vector<double> vect );
+class Node
+{
+    public:
+    int data;
+    struct Node *next;
+
+    Node()
+    {
+        data = 0;
+        next = NULL;
+    }
+
+    Node(int data)
+    {
+        this->data = data;
+        this->next = NULL;
+    }
+
+};
 
 
 int main ( int argc, char *argv[] )
 {
-    vector<double> arr;
+    if ( argc > 1 )
+    {
+        struct Node *head = new Node();
+        // takes CLI args and inserts into array
+        for ( int i = 1; i < argc; ++i )
+        {
+            insertNode( &head, atoi(argv[i] ));
+        }
 
-    // Takes CLI args and inserts into vector
-    for ( int i = 1; i < argc; ++i )
-        arr.push_back ( atof(argv[i]) );
+        printList( &head );
 
-    cout << "Sum of the two lowest positive numbers from the array [";
-    for ( int i = 0; i < arr.size(); i++ )
-        i == arr.size() - 1 ? cout << arr[i] << ']': cout << arr[i] << ',';
+        deleteList( &head );
+        
+        return 0;
+    }
 
-    cout << " is " << min_sum(arr) << endl;
+    
 
-    return 0;
+    cout << "Input error." << endl;
+    return -1;
 }
 
 
 /*
-    Takes an array of integers as input.
-    Returns sum of two smallest positive integers.
+    Returns true if elem present in List.
+    Returns false otherwise.
 */
-int min_sum( vector<double> vect )
+bool checkDuplicate ( struct Node** head, int elem )
 {
-    if ( vect.size() > 2 )
+    struct Node *curr = *head;
+    while ( curr != NULL )
     {
-        // initializes variables as max value of int as supported by C++
-        int min_1 = INT_MAX, min_2 = INT_MAX;
-
-        for ( int i = 0; i < vect.size(); i++ )
-        {
-            // if current element is smaller than our smallest stored variable
-            if ( vect[i] < min_1 && vect[i] > 0 )
-            {
-                min_2 = min_1;      // ovewrwrites second smallest with stored smallest
-                min_1 = vect[i];    // stores new smallest 
-            }
-            // if current element is smaller than stored second smallest but larger than stored smallest
-            else if ( vect[i] < min_2 && vect[i] != min_1 && vect[i] > 0 )
-                min_2 = vect[i];    // stores new second smallest
-
-        }
-
-        return min_1 + min_2;
+        if ( curr->data == elem )
+            return true;
+        curr = curr->next;
     }
-    
-    return -1;  // error code
+
+    return false;
+}
+
+/*
+    Inserts elements in ascending order.
+*/
+void insertNode ( struct Node** head, int node_data )
+{
+    // if data to insert isn't already present in List
+    if ( !checkDuplicate( head, node_data ) )
+    {
+        struct Node *curr = *head;
+        // traverses List to insertion point
+        while ( curr!= NULL && curr-> next != NULL && curr->next->data < node_data )
+            curr = curr->next;
+        // inserts Node
+        struct Node* toInsert = new Node(node_data);
+        toInsert->next = curr->next;
+        curr->next = toInsert;
+    }
+}
+
+/*
+    Prints list.
+*/
+void printList ( struct Node** head )
+{
+    struct Node *curr = *head;
+
+    while ( curr != NULL )
+    {
+        cout << curr->data << ' ';
+   
+        curr = curr->next;
+    }
+
+    cout << endl;
+}
+
+/*
+    Frees all memory associated with List.
+*/
+void deleteList ( struct Node** head )
+{
+    struct Node *toDelete = *head;
+    struct Node *curr = toDelete->next;
+    while ( curr != NULL )
+    {
+        curr = curr->next;
+        delete toDelete;
+        toDelete = curr;
+    }
 }
