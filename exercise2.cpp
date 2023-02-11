@@ -100,7 +100,7 @@ void insertNode ( struct Node** head, int node_data )
 */
 void printList ( struct Node** head )
 {
-    struct Node *curr = *head;
+    struct Node *curr = (*head)->next;
 
     while ( curr != NULL )
     {
