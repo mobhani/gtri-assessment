@@ -20,11 +20,12 @@ int main ( int argc, char *argv[] )
     stack<char> s;
     // total number of valid pairs
     int count = 0;
-
+    // iterates over string
     for ( int i = 0; i < brackets.length(); i++ )
     {   
         switch ( brackets[i] )
         {
+            // open brackets get sent to stack
             case '(':
                 s.push(brackets[i]);
                 break;
@@ -34,12 +35,14 @@ int main ( int argc, char *argv[] )
             case '[':
                 s.push(brackets[i]);
                 break;
-            
+            // closing brackets pops open bracket from stack 
             case ')':
-                if ( !s.empty() && s.top() == '(' ){
-                    count++;
-                    s.pop();
+                // if closing bracket matches open bracket from stack
+                if ( !s.empty() && s.top() == '(' ){    
+                    count++;    // valid pair +=1
+                    s.pop();    // open bracket popped
                 }else {
+                    // if stack empty or bracket mismatch
                     cout << "False, " << 0 << endl;
                     return -1;
                 }
@@ -67,13 +70,12 @@ int main ( int argc, char *argv[] )
                 return -1;
         }  
     }
-
+    // if stack still contains items in it
     if (!s.empty())
     {
         cout << "False, " << 0 << endl;
         return -1;
     }
-        
     
     cout << "True, " << count << endl;
     return 0;
