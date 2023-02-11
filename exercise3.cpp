@@ -14,13 +14,12 @@ int main ( int argc, char *argv[] )
 {
     if ( argc != 2 )
         return -1;
-    
+    // stores bracket input as string
     string brackets = argv[1];
-
+    // stack used to determine correct order of brackets
     stack<char> s;
-
+    // total number of valid pairs
     int count = 0;
-
 
     for ( int i = 0; i < brackets.length(); i++ )
     {   
@@ -37,37 +36,28 @@ int main ( int argc, char *argv[] )
                 break;
             
             case ')':
-                if ( !s.empty() && s.top() == '(' )
-                {
+                if ( !s.empty() && s.top() == '(' ){
                     count++;
                     s.pop();
-                } 
-                else 
-                {
+                }else {
                     cout << "False, " << 0 << endl;
                     return -1;
                 }
                 break;
             case '}':
-                if ( !s.empty() && s.top() == '{' )
-                {
+                if ( !s.empty() && s.top() == '{' ){
                     count++;
                     s.pop();
-                }
-                else 
-                {
+                }else {
                     cout << "False, " << 0 << endl;
                     return -1;
                 }
                 break;
             case ']':
-                if ( !s.empty() && s.top() == '[' )
-                {
+                if ( !s.empty() && s.top() == '[' ){
                     count++;
                     s.pop();
-                }
-                else 
-                {
+                }else {
                     cout << "False, " << 0 << endl;
                     return -1;
                 }
@@ -88,4 +78,3 @@ int main ( int argc, char *argv[] )
     cout << "True, " << count << endl;
     return 0;
 }
-

@@ -2,5 +2,8 @@
 *.out
 # ignore executable
 exec
+exercise1
+exercise2
+exercise3
 # ignore output files
 *output.txt
