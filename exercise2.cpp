@@ -100,12 +100,12 @@ void insertNode ( struct Node** head, int node_data )
 */
 void printList ( struct Node** head )
 {
+    // skips over head node
     struct Node *curr = (*head)->next;
 
     while ( curr != NULL )
     {
         cout << curr->data << ' ';
-   
         curr = curr->next;
     }
 
