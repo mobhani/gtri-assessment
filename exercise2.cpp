@@ -32,7 +32,6 @@ class Node
         this->data = data;
         this->next = NULL;
     }
-
 };
 
 

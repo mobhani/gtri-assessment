@@ -1,5 +1,4 @@
 #!/bin/sh
-ls
 
 # exercise 1
 echo
